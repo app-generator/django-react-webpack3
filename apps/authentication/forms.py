@@ -22,22 +22,24 @@ class SignUpForm(UserCreationForm):
             attrs={"placeholder": "Username", "class": "form-control"}
         )
     )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
-    )
-    password = forms.CharField(
+    password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={"placeholder": "Password", "class": "form-control"}
+        )
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Password check", "class": "form-control"}
         )
     )
 
     class Meta:
         model = User
-        fields = ("username", "email", "password")
+        fields = ("username", "password1", "password2")
 
     def save(self, commit=True, *args, **kwargs):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password"])
+        user.set_password(self.cleaned_data["password1"])
 
         if commit:
             user.save()
