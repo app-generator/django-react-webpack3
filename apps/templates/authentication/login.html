@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-md-8 mx-auto d-flex align-items-center">
+            <form method="post" action="" class="w-50 mx-auto border rounded p-4 pt-0">
+                {% csrf_token %}
+                <div class="form-group my-4">
+                    {{ form.username }}
+                </div>
+                <div class="form-group my-4">
+                    {{ form.password }}
+                </div>
+                <p class="text-danger">
+                    {% if msg %}
+                    {{ msg | safe }}
+                    {% else %}
+                    Add your credentials
+                    {% endif %}
+                </p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

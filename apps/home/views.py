@@ -17,7 +17,6 @@ def pages(request):
     context = {}
 
     try:
-
         load_template = request.path.split("/")[-1]
         context["segment"] = load_template
 
@@ -25,7 +24,6 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:
-
         html_template = loader.get_template("home/page-404.html")
         return HttpResponse(html_template.render(context, request))
 
